@@ -73,14 +73,17 @@ tradeStream
               Collectors.counting())); 
 
 System.out.println("map = " + map); */
-            
+
+ long start = System.nanoTime();
  Map<String, Long> map = tradeStream
        .limit(1_000_000)
         .peek(t-> occasionallyDebug(t))
        .collect(Collectors.groupingBy(t -> t.getCurrency1() + "/" + t.getCurrency2(),
               Collectors.counting())); 
 
-System.out.println("map = " + map);          
+System.out.println("map = " + map);    
+System.out.printf("time = %.3f%n", (System.nanoTime() - start) / 1e9);
+
             
 
 
